@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Linking to sections</title>
+</head>
+<body>
+	<h1 id="top">Links to sections of one page</h1>
+	<ul>
+		<li><a href="#section1">Metadata content</a></li>
+	    <li><a href="#section2">Flow content</a></li>
+		<li><a href="#section3">Sectioning content</a></li>
+		<li><a href="#section4">Heading content</a></li>
+		<li><a href="#section5">Phrasing content</a></li>
+		<li><a href="#section6">Embedded content</a></li>
+		<li><a href="#section7">Interactive content</a></li>
+		<li><a href="#section8">Section 8</a></li>
+	</ul>
+	<section id="section1">
+		<h3>(#section1) Section 1 Metadata content</h3>
+		<p>Metadata content is content that sets up the presentation or behavior of the rest of the content, or that sets up the relationship of the document with other documents, or that conveys other "out of band" information.<br>
+
+		base link meta noscript script style template title
+		Elements from other namespaces whose semantics are primarily metadata-related (e.g. RDF) are also metadata content.</p>
+	</section>
+	<section id="section2">
+		<h3>(#section2) Section 2 Flow content</h3>
+		<p>Most elements that are used in the body of documents and applications are categorized as flow content.<br>
+
+		a abbr address area (if it is a descendant of a map element) article aside audio b bdi bdo blockquote br button canvas cite code data datalist del dfn div dl em embed fieldset figure footer form h1 h2 h3 h4 h5 h6 header hr i iframe img input ins kbd keygen label main map mark math meter nav noscript object ol output p pre progress q ruby s samp script section select small span strong sub sup svg table template textarea time u ul var video wbr text</p>
+	</section>
+	<section id="section3">
+		<h3>(#section3) Section 3 Sectioning content</h3>
+		<p>Sectioning content is content that defines the scope of headings and footers.
+
+		article aside nav section
+		Each sectioning content element potentially has a heading and an outline. See the section on headings and sections for further details.
+
+		There are also certain elements that are sectioning roots. These are distinct from sectioning content, but they can also have an outline.</p>
+	</section>
+	<section id="section4">
+		<h3>(#section4) Section 4 Heading content</h3>
+		<p>Heading content defines the header of a section (whether explicitly marked up using sectioning content elements, or implied by the heading content itself).
+
+		h1 h2 h3 h4 h5 h6</p>
+	</section>
+	<section id="section5">
+		<h3>(#section5) Section 5 Phrasing content</h3>
+		<p>Phrasing content is the text of the document, as well as elements that mark up that text at the intra-paragraph level. Runs of phrasing content form paragraphs.
+
+		a abbr area (if it is a descendant of a map element) audio b bdi bdo br button canvas cite code data datalist del dfn em embed i iframe img input ins kbd keygen label map mark math meter noscript object output progress q ruby s samp script select small span strong sub sup svg template textarea time u var video wbr text
+		Most elements that are categorized as phrasing content can only contain elements that are themselves categorized as phrasing content, not any flow content.
+
+		Text, in the context of content models, means either nothing, or Text nodes. Text is sometimes used as a content model on its own, but is also phrasing content, and can be inter-element whitespace (if the Text nodes are empty or contain just space characters).
+
+		Text nodes and attribute values must consist of Unicode characters, must not contain U+0000 characters, must not contain permanently undefined Unicode characters (noncharacters), and must not contain control characters other than space characters. This specification includes extra constraints on the exact value of Text nodes and attribute values depending on their precise context.</p>
+	</section>
+	<section id="section6">
+		<h3>(#section6) Section 6 Embedded content</h3>
+		<p>Embedded content is content that imports another resource into the document, or content from another vocabulary that is inserted into the document.
+
+		audio canvas embed iframe img math object svg video
+		Elements that are from namespaces other than the HTML namespace and that convey content but not metadata, are embedded content for the purposes of the content models defined in this specification. (For example, MathML, or SVG.)
+
+		Some embedded content elements can have fallback content: content that is to be used when the external resource cannot be used (e.g. because it is of an unsupported format). The element definitions state what the fallback is, if any.</p>
+	</section>
+	<section id="section7">
+		<h3>(#section7) Section 7 Interactive content</h3>
+		<p>Interactive content is content that is specifically intended for user interaction.
+
+		a audio (if the controls attribute is present) button embed iframe img (if the usemap attribute is present) input (if the type attribute is not in the hidden state) keygen label object (if the usemap attribute is present) select textarea video (if the controls attribute is present)
+		Certain elements in HTML have an activation behavior, which means that the user can activate them. This triggers a sequence of events dependent on the activation mechanism, and normally culminating in a click event, as described below.
+
+		The user agent should allow the user to manually trigger elements that have an activation behavior, for instance using keyboard or voice input, or through mouse clicks. When the user triggers an element with a defined activation behavior in a manner other than clicking it, the default action of the interaction event must be to run synthetic click activation steps on the element.
+
+		Each element has a click in progress flag, initially set to false.
+
+		When a user agent is to run synthetic click activation steps on an element, the user agent must run the following steps:
+
+		If the element's click in progress flag is set to true, then abort these steps.
+
+		Set the click in progress flag on the element to true.
+
+		Run pre-click activation steps on the element.
+
+		Fire a click event at the element. If the run synthetic click activation steps algorithm was invoked because the click() method was invoked, then the isTrusted attribute must be initialized to false.
+
+		If this click event is not canceled, run post-click activation steps on the element.
+
+		If the event is canceled, the user agent must run canceled activation steps on the element instead.
+
+		Set the click in progress flag on the element to false.
+
+		When a pointing device is clicked, the user agent must run these steps:
+
+		If the element's click in progress flag is set to true, then abort these steps.
+
+		Set the click in progress flag on the element to true.
+
+		Let e be the nearest activatable element of the element designated by the user (defined below), if any.
+
+		If there is an element e, run pre-click activation steps on it.
+
+		Dispatch the required click event.
+
+		If there is an element e and the click event is not canceled, run post-click activation steps on element e.
+
+		If there is an element e and the event is canceled, run canceled activation steps on element e.
+
+		Set the click in progress flag on the element to false.
+
+		The algorithms above don't run for arbitrary synthetic events dispatched by author script. The click() method can be used to make the run synthetic click activation steps algorithm happen programmatically.
+
+		Click-focusing behavior (e.g. the focusing of a text field when user clicks in one) typically happens before the click, when the mouse button is first depressed, and is therefore not discussed here.
+
+		Given an element target, the nearest activatable element is the element returned by the following algorithm:
+
+		If target has a defined activation behavior, then return target and abort these steps.
+
+		If target has a parent element, then set target to that parent element and return to the first step.
+
+		Otherwise, there is no nearest activatable element.
+
+		When a user agent is to run pre-click activation steps on an element, it must run the pre-click activation steps defined for that element, if any.
+
+		When a user agent is to run canceled activation steps on an element, it must run the canceled activation steps defined for that element, if any.
+
+		When a user agent is to run post-click activation steps on an element, it must run the activation behavior defined for that element, if any. Activation behaviors can refer to the click event that was fired by the steps above leading up to this point.</p>
+	</section>
+	<div>
+		<a name="section8">(#section8) Section 8</a>
+		<p>
+			Back to top: <a href="#top">Back to top</a>
+		</p>
+	</div>
+</body>
+</html>
